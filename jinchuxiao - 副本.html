@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#00409a">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <link rel="icon" href="img/Icon58.png">
+    <title>学生进出校管理系统</title>
+    <link href="app.87d98219.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div style="height: 3.2rem; width: 100%; background-color: #00409a; padding: 1rem;">
+            <img src="img/leftarrow.png" style="height: 1.2rem;float: left;" onclick="setInfo()">
+            <div style="float:left;color: white;font-size: 1rem;font-weight: 600;margin-left: 10%">学生进出校通行证</div>
+            <img src="img/dot.png" style="height: 1.2rem;float: right;" onclick="setInfo()">
+        </div>
+        <div class="wrapper">
+
+            <div style="position: relative;">
+                <img src="img/xyk.56d8a335.png" style="width: 100%; height: 100%;">
+                <div class="dept" id="dept">船舶海洋与建筑工程学院</div>
+            </div>
+            <div class="content">
+                <div class="user">
+                    <img src="img/liyan.jpg">
+                    <div class="user-info">
+                        <div id="user-name"></div>
+                        <div class="user-no" id="user-no"></div>
+                    </div>
+                </div>
+                <div class="audit">
+                    <!---->
+                    <div id="date"></div>
+                    <div id="campus"></div>
+                    <!---->
+                    <div class="audit-status success">审核通过</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; padding-top: 1.5rem;">
+                <div class="circle-btn" onclick="changeBtnStatus()">
+                    <div class="crust success-bk-air">
+                        <div class="mantle success-bk-gradient">
+                            <div class="spacing">
+                                <div class="core success-bk">
+                                    <div style="font-weight: 300;" id="circle-status">出校</div>
+                                    <div>PASSED</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 5px; padding: .2rem .7rem;border-radius: 1rem;box-shadow: 0px 0 3px #bebcba, 0px 0 5px #bebcba;">
+                    <svg t="1595819494041" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2132" width=".9rem" height=".9rem" style="float: left;margin-right: 1px;"><path d="M512 62C263.47 62 62 263.47 62 512s201.47 450 450 450 450-201.47 450-450S760.53 62 512 62z m0 814a362.62 362.62 0 1 1 141.66-28.57A361.59 361.59 0 0 1 512 876z" p-id="2133" fill="#43b034"></path><path d="M512 235.5a47 47 0 0 0-47 47v296a47 47 0 0 0 94 0v-296a47 47 0 0 0-47-47zM512 688.5a50 50 0 1 0 50 50 50 50 0 0 0-50-50z" p-id="2134" fill="#43b034"></path></svg>
+                    <span id="msg" class="success">此状态保持10分钟，请尽快出校</span>
+                </div>
+                <div class="time" id="time"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function padLeft(number) {
+        var str = number.toString();
+        if (str.length == 1) {
+        return ("0" + str);
+        } else {
+        return str;
+        }
+        }
+
+        // 设置进出校时间
+        var date = new Date();
+        var today = document.getElementById("date");
+        today.innerHTML = date.getMonth() + 1 + "月" + date.getDate() + "号";
+        // 设置校区
+        var campus = document.getElementById("campus");
+        campus.innerHTML = "闵行校区";
+
+        setInterval(function() {
+        date = new Date();
+        var hour = padLeft(date.getHours());
+        var minute = padLeft(date.getMinutes());
+        var seconds = padLeft(date.getSeconds());
+        var time = document.getElementById('time');
+        time.innerHTML = hour + ":" + minute + ":" + seconds;
+        },
+        1000);
+
+        function changeBtnStatus() {
+        var status = document.getElementById('circle-status');
+        var msg = document.getElementById('msg');
+        if (status.innerHTML == "进校") {
+        status.innerHTML = "出校";
+        msg.innerHTML = "此状态保持10分钟，请尽快出校";
+        } else {
+        status.innerHTML = "进校";
+        msg.innerHTML = "此状态保持30分钟，请尽快进校";
+        }
+        }
+    
+
+        // 设置用户名
+        var username = document.getElementById("user-name");
+        username.innerHTML ="李琰";
+        // 设置学号
+        var userno = document.getElementById("user-no");
+        userno.innerHTML = "118010910081";
+    </script>
+</body>
+
+   
+
+</html>
